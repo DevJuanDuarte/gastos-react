@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Header from './components/Header'
+import Modal from './components/Modal'
 import IconoNuevoGasto from './img/nuevo-gasto.svg'
 
 const App = () => {
@@ -9,6 +10,7 @@ const App = () => {
   const [isValidPresupuesto, setIsValidPresupuesto] = useState(false) //Comienza como falso
 
   const [modal, setModal] = useState(false)
+  //Icono crear
   const handleNuevoGasto = () => {
     setModal(true)
   }
@@ -33,7 +35,7 @@ const App = () => {
         </div>
       )}
 
-      {modal && <p>Desde modal</p>}
+      {modal && <Modal setModal={setModal} />}
     </div>
   )
 }
