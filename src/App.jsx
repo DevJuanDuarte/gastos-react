@@ -8,11 +8,17 @@ const App = () => {
   //1. Se crea el State
   const [presupuesto, setPresupuesto] = useState(0) //Se inicia en 0
   const [isValidPresupuesto, setIsValidPresupuesto] = useState(false) //Comienza como falso
-
   const [modal, setModal] = useState(false)
+  const [animarModal, setAnimarModal] = useState(false)
+
+  
   //Icono crear
   const handleNuevoGasto = () => {
     setModal(true)
+
+    setTimeout(() => {
+      setAnimarModal(true)
+  }, 300);
   }
 
   return (
@@ -35,7 +41,7 @@ const App = () => {
         </div>
       )}
 
-      {modal && <Modal setModal={setModal} />}
+      {modal && <Modal setAnimarModal={setAnimarModal} animarModal={animarModal} setModal={setModal} />}
     </div>
   )
 }
