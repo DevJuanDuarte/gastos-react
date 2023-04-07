@@ -10,15 +10,20 @@ const App = () => {
   const [isValidPresupuesto, setIsValidPresupuesto] = useState(false) //Comienza como falso
   const [modal, setModal] = useState(false)
   const [animarModal, setAnimarModal] = useState(false)
+  const [gatos,setGastos] = useState([])
 
-  
+
   //Icono crear
   const handleNuevoGasto = () => {
     setModal(true)
 
     setTimeout(() => {
       setAnimarModal(true)
-  }, 300);
+    }, 300);
+  }
+
+  const guardarGasto = gasto => {
+    console.log(gasto)
   }
 
   return (
@@ -35,13 +40,17 @@ const App = () => {
         <div className="nuevo-gasto">
           <img
             src={IconoNuevoGasto}
-            alt="Icono Nuevo Gasto" 
+            alt="Icono Nuevo Gasto"
             onClick={handleNuevoGasto}
           />
         </div>
       )}
 
-      {modal && <Modal setAnimarModal={setAnimarModal} animarModal={animarModal} setModal={setModal} />}
+      {modal && <Modal
+                  setAnimarModal={setAnimarModal}
+                  animarModal={animarModal}
+                  setModal={setModal}
+                  guardarGasto={guardarGasto} />}
     </div>
   )
 }
