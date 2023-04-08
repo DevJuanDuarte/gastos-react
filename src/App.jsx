@@ -38,7 +38,7 @@ const App = () => {
   }
 
   return (
-    <div>
+    <div className={modal && 'fijar'}>
       <Header
         //2. Se agrega al componente
         presupuesto={presupuesto}
