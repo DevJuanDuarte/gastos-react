@@ -1,4 +1,5 @@
 import React from 'react'
+import { formatearFecha } from '../helpers'
 
 const Gasto = ({gasto}) => {
   return (
@@ -11,8 +12,13 @@ const Gasto = ({gasto}) => {
                 <p className='nombre-gasto'>
                     {gasto.nombre}
                 </p>
+                <p className="fecha-gasto">
+                    Agregado el: {""}
+                    <span>{formatearFecha(gasto.fecha)}</span>
+                </p>
             </div>
         </div>
+        <p className="cantidad-gasto">${gasto.precio.toLocaleString()}</p>
     </div>
   )
 }
