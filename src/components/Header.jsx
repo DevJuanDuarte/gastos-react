@@ -4,6 +4,7 @@ import ControlPresupuesto from './ControlPresupuesto'
 
 //3. Se extraen
 const Header = ({
+  gastos,
   presupuesto,
   setPresupuesto,
   isValidPresupuesto,
@@ -14,7 +15,7 @@ const Header = ({
       <h1>Planificador de gastos</h1>
 
       {isValidPresupuesto ? (
-        <ControlPresupuesto presupuesto={presupuesto}/>
+        <ControlPresupuesto gastos={gastos} presupuesto={presupuesto}/>
       ) :
         (
           <NuevoPresupuesto
