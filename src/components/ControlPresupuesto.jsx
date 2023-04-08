@@ -6,15 +6,10 @@ const ControlPresupuesto = ({ gastos,presupuesto }) => {
     const [gastado, setGastado] = useState(0)
 
     useEffect(() => {
-      const totalGastado = gastos.reduce((total, gasto)=> 
-         gasto.precio + total, 0
-      )
+      const totalGastado = gastos.reduce((total, gasto)=> gasto.precio + total, 0)
+      const totalDiponible = presupuesto - totalGastado
       setGastado(totalGastado)
-      return () => {
-        console.log(totalGastado)
-      }
-      
-      
+      setDisponible(totalDiponible)
     }, [gastos])
     
 
