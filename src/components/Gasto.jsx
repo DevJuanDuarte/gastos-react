@@ -8,39 +8,58 @@ import IconoOcio from '../img/icono_ocio.svg'
 import IconoGastos from '../img/icono_gastos.svg'
 import IconoSalud from '../img/icono_salud.svg'
 import IconoSuscripciones from '../img/icono_suscripciones.svg'
+import { LeadingActions, SwipeableList, SwipeableListItem, SwipeAction, TrailingActions } from 'react-swipeable-list'
+import "react-swipeable-list/dist/styles.css"
 
 const diccionarioIconos = {
 
-    ahorro : IconoAhorro,
-    casa : IconoCasa,
-    comida : IconoComida,
-    ocio : IconoOcio,
-    gastos : IconoGastos,
-    salud : IconoSalud,
-    suscripciones : IconoSuscripciones
+    ahorro: IconoAhorro,
+    casa: IconoCasa,
+    comida: IconoComida,
+    ocio: IconoOcio,
+    gastos: IconoGastos,
+    salud: IconoSalud,
+    suscripciones: IconoSuscripciones
 
 }
 
 const Gasto = ({ gasto }) => {
+
+    const leadingActions = ()=> {
+        console.log('Editar..');
+    }
+
+    const trailingActions = ()=> {
+        console.log('Eliminar..');
+    }
+
     return (
-        <div className='gasto sombra'>
-            <div className='contenido-gasto'>
-                <img src={diccionarioIconos[gasto.categoria]} alt="Icono Gasto" />
-                <div className='descripcion-gasto'>
-                    <p className="categoria">
-                        {gasto.categoria}
-                    </p>
-                    <p className='nombre-gasto'>
-                        {gasto.nombre}
-                    </p>
-                    <p className="fecha-gasto">
-                        Agregado el: {""}
-                        <span>{formatearFecha(gasto.fecha)}</span>
-                    </p>
+        <SwipeableList>
+            <SwipeableListItem
+                leadingActions={leadingActions}
+                trailingActions={trailingActions}
+            >
+                <div className='gasto sombra'>
+                    <div className='contenido-gasto'>
+                        <img src={diccionarioIconos[gasto.categoria]} alt="Icono Gasto" />
+                        <div className='descripcion-gasto'>
+                            <p className="categoria">
+                                {gasto.categoria}
+                            </p>
+                            <p className='nombre-gasto'>
+                                {gasto.nombre}
+                            </p>
+                            <p className="fecha-gasto">
+                                Agregado el: {""}
+                                <span>{formatearFecha(gasto.fecha)}</span>
+                            </p>
+                        </div>
+                    </div>
+                    <p className="cantidad-gasto">${gasto.precio.toLocaleString()}</p>
                 </div>
-            </div>
-            <p className="cantidad-gasto">${gasto.precio.toLocaleString()}</p>
-        </div>
+            </SwipeableListItem>
+        </SwipeableList>
+
     )
 }
 
