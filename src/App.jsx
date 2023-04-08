@@ -18,9 +18,13 @@ const App = () => {
 
   const [gastoEditar, setGastoEditar] = useState({})
 
-  useEffect(()=> {
+  useEffect(() => {
     if (Object.keys(gastoEditar).length > 0) {
-      handleNuevoGasto()
+      setModal(true)
+
+      setTimeout(() => {
+        setAnimarModal(true)
+      }, 300);
     }
   }, [gastoEditar])
 
@@ -28,6 +32,7 @@ const App = () => {
   //Icono crear
   const handleNuevoGasto = () => {
     setModal(true)
+    setGastoEditar({})
 
     setTimeout(() => {
       setAnimarModal(true)
@@ -59,9 +64,9 @@ const App = () => {
       {isValidPresupuesto && (
         <>
           <main>
-            <ListadoDeGastos 
-            setGastoEditar={setGastoEditar}
-            gastos={gastos}/>
+            <ListadoDeGastos
+              setGastoEditar={setGastoEditar}
+              gastos={gastos} />
           </main>
           <div className="nuevo-gasto">
             <img
@@ -77,7 +82,9 @@ const App = () => {
         setAnimarModal={setAnimarModal}
         animarModal={animarModal}
         setModal={setModal}
-        guardarGasto={guardarGasto} />}
+        guardarGasto={guardarGasto}
+        gastoEditar={gastoEditar} />}
+
     </div>
   )
 }
