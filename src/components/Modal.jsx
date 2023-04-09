@@ -8,12 +8,16 @@ const Modal = ({ setModal, animarModal, setAnimarModal, guardarGasto, gastoEdita
     const [nombre, setNombre] = useState('')
     const [precio, setPrecio] = useState('')
     const [categoria, setCategoria] = useState('')
+    const [fecha, setFecha] = useState('')
+    const [id, setId] = useState('')
 
     useEffect (()=> {
         if (Object.keys(gastoEditar).length > 0) {
             setNombre(gastoEditar.nombre)
             setPrecio(gastoEditar.precio)
             setCategoria(gastoEditar.categoria)
+            setId(gastoEditar.id)
+            setFecha(gastoEditar.fecha)
           }
     }, [])
 
@@ -34,7 +38,7 @@ const Modal = ({ setModal, animarModal, setAnimarModal, guardarGasto, gastoEdita
             }, 3000);
             return
         }
-        guardarGasto({ nombre, precio, categoria })
+        guardarGasto({ nombre, precio, categoria, id, fecha  })
     }
 
 
@@ -52,7 +56,7 @@ const Modal = ({ setModal, animarModal, setAnimarModal, guardarGasto, gastoEdita
             <form
                 onSubmit={handleSubmit}
                 className={`formulario ${animarModal ? "animar" : 'cerrar'}`}>
-                <legend>Desde form</legend>
+                <legend>{gastoEditar.nombre ? 'Editar Gasto' : 'Nuevo Gasto'}</legend>
                 {mensaje && <Mensaje tipo="error">{mensaje}</Mensaje>}
 
                 <div className="campo">
@@ -83,14 +87,14 @@ const Modal = ({ setModal, animarModal, setAnimarModal, guardarGasto, gastoEdita
                         <option value="ahorro">-- Ahorro --</option>
                         <option value="comida">-- Comida --</option>
                         <option value="casa">-- Casa --</option>
-                        <option value="varios">-- Varios --</option>
+                        <option value="gastos">-- Varios --</option>
                         <option value="ocio">-- Ocio --</option>
                         <option value="salud">-- Salud --</option>
                         <option value="suscripciones">-- Suscripciones --</option>
                     </select>
                 </div>
 
-                <input type="submit" value="Añadir Gasto" />
+                <input type="submit" value={gastoEditar.nombre ? 'Guardar' : 'Añadir'} />
             </form>
         </div>
     )
